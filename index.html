@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gleb Sokolov&#39;s Little Hub</title>
   <style>
   @font-face {
@@ -1240,8 +1240,6 @@ pre[class*="language-"] {
 }
 </style>
   <style>.markdown-body{}pre.front-matter{display:none!important;}</style>
-  <link rel="icon" href="icon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
   <article class="markdown-body"><p>On this page, I would like to share some works made by me. You can find my resume <a href="https://spb.hh.ru/resume/03d9e35dff096d7a650039ed1f4e4e39726f7a?hhtmFrom=account_login">here</a></p>
@@ -1252,6 +1250,7 @@ pre[class*="language-"] {
 <li>ETL pipeline</li>
 <li>Cohort Analysis template</li>
 <li>Credit Default Scoring (Hypothesis Testing)</li>
+<li>No-show Appointment Data Exploration</li>
 <li>Credit Card Fraud Detection</li>
 <li>Spread Widening prediction</li>
 <li>SQL scripts collection</li>
@@ -1267,14 +1266,12 @@ pre[class*="language-"] {
 <h3 class="atx" id="etl-pipeline">ETL pipeline</h3>
 <p><a href="etl.html">This</a> is not full-scale work. Via this script, I would like to demonstrate the fact that I have experience working with databases, to make this work I've created a locally running database, which can be accessed remotely (when I start a ngrok tunnel on my local machine). I've also wanted to show that I'm able to load any given table into a relational database.</p>
 <h3 class="atx" id="cohort-analysis">Cohort Analysis</h3>
-<p><a href="Case6.html">Here</a> I've attempted to calculate several metrics and make basic plots. I've also wanted to
-  show that I'm familiar with pandas groupby method, and using it to make plots.</p>
-<p>In <a href="cohortAnalysis.html">this</a> work I've broken the dataset down into cohorts, calculated RMF metrics and
-  then basing on their value, implemented 'hand-crafted' clustering (where affiliation to each cluster was calculated
-  based on heuristic rule) and then compared (RMF) this way of clustering with scikit-learn algo K-means. <em>This can
-    be used as template for cohort analysis for an arbitrary dataset</em> </p>
+<p><a href="Case6.html">Here</a> I've attempted to calculate several metrics and make basic plots. I've also wanted to show that I'm familiar with pandas groupby method, and using it to make plots.</p>
+<p>In <a href="cohortAnalysis.html">this</a> work I've broken the dataset down into cohorts, calculated RMF metrics and then basing on their value, implemented  'hand-crafted' clustering (where affiliation to each cluster was calculated based on heuristic rule) and then compared (RMF) this way of clustering with scikit-learn algo K-means. <em>This can be used as template for cohort analysis for an arbitrary dataset</em>  </p>
 <h3 class="atx" id="credit-default-scoring-hypothesis-testing">Credit Default Scoring (Hypothesis Testing)</h3>
 <p>In <a href="creditScore.html">this</a> script written in R, I've done some exploratory data analysis and tested hypotheses concerning default, i.e. how does presence in certain social category (sex, marriage, education level) impact the returning of credit, and also answered the question if the mean credit limit differs for default and non-default groups.</p>
+<h3 class="atx" id="no-show-appointment-data-exploration">No-show Appointment Data Exploration</h3>
+<p><a href="noShowAppointment.html">Here</a> I've made a visualization for every feature that can presumably impact the target variable (show or no-show on the given day), next, I've calculated confidence intervals for difference in show/no-show ratios in order to numerically show which features have impact on target. </p>
 <h3 class="atx" id="credit-card-fraud-detection">Credit Card Fraud Detection</h3>
 <p>In <a href="ccFraudDetection.html">this</a> script I tried to implement a well-known anomaly detection algorithm that uses inverse PCA transformation </p>
 <h3 class="atx" id="spread-widening-prediction">Spread Widening Prediction</h3>

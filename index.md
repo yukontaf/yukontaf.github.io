@@ -1,3 +1,5 @@
+<link rel="icon" href="icon.png">
+
 On this page, I would like to share some works made by me. You can find my resume [here](https://spb.hh.ru/resume/03d9e35dff096d7a650039ed1f4e4e39726f7a?hhtmFrom=account_login)
 
 List of projects:
@@ -7,6 +9,7 @@ List of projects:
 - ETL pipeline
 - Cohort Analysis template
 - Credit Default Scoring (Hypothesis Testing)
+- No-show Appointment Data Exploration
 - Credit Card Fraud Detection
 - Spread Widening prediction
 - SQL scripts collection
@@ -35,6 +38,10 @@ In [this](cohortAnalysis.html) work I've broken the dataset down into cohorts, c
 ### Credit Default Scoring (Hypothesis Testing)
 
 In [this](creditScore.html) script written in R, I've done some exploratory data analysis and tested hypotheses concerning default, i.e. how does presence in certain social category (sex, marriage, education level) impact the returning of credit, and also answered the question if the mean credit limit differs for default and non-default groups.
+
+### No-show Appointment Data Exploration
+
+[Here](noShowAppointment.html) I've made a visualization for every feature that can presumably impact the target variable (show or no-show on the given day), next, I've calculated confidence intervals for difference in show/no-show ratios in order to numerically show which features have impact on target. 
 
 ### Credit Card Fraud Detection
 
