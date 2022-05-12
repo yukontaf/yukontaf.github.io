@@ -5,7 +5,7 @@ List of projects:
 - NYSE data dashboard
 - Customer Churn Prediction
 - ETL pipeline
-- Cohort Analysis & simple dataviz
+- Cohort Analysis template
 - Credit Default Scoring (Hypothesis Testing)
 - Credit Card Fraud Detection
 - Spread Widening prediction
@@ -38,23 +38,23 @@ In [this](creditScore.html) script written in R, I've done some exploratory data
 
 ### Credit Card Fraud Detection
 
-In [this](https://nbviewer.org/github/yukontaf/projects/blob/master/cc_fraud_detection.ipynb) script I tried to implement a well-known anomaly detection algorithm that uses inverse PCA transformation 
+In [this](ccFraudDetection.html) script I tried to implement a well-known anomaly detection algorithm that uses inverse PCA transformation 
 
 ### Spread Widening Prediction
 
-In the [first](https://github.com/yukontaf/projects/blob/master/orderbook.ipynb) script, I implemented a simple animated order book (much of the code is redundant, watch the result at the end of the file). In a [second](https://github.com/yukontaf/projects/blob/master/tz8kn98d.ipynb) – tried to build a model which would predict if the spread becomes wider or not. To do so, I needed to deal with an extremely imbalanced dataset.
+In the [first](orderBook.html) script, I implemented a simple animated order book (much of the code is redundant, watch the result at the end of the file, note: in order to view an animated version you will need to download and launch the source code on your local machine). In a [second](spreadWideningPred.html) – tried to build a model which would predict if the spread becomes wider or not. To do so, I needed to deal with an extremely imbalanced dataset.
 
 ### SQL scripts
 
 Here are some SQL scripts, written by me.
 
-- [Basic SQL](https://github.com/yukontaf/projects/blob/master/basic_sql.ipynb)
+- [Basic SQL](basicSQL.html)
 - [Script 1](https://github.com/yukontaf/projects/blob/master/script1.sql)
 - [Script 2](https://github.com/yukontaf/projects/blob/master/script2.sql)
 - [Script 3](https://github.com/yukontaf/projects/blob/master/script3.sql)
 - [Script 4](https://github.com/yukontaf/projects/blob/master/script4.sql)
 - [Script 5](https://github.com/yukontaf/projects/blob/master/script5.sql)
-- And [here](https://github.com/yukontaf/projects/blob/master/tables.ipynb) is a notebook where you can see the tables to which these queries are made (except for the first)
+- And [here](tables.html) is a notebook where you can see the tables to which these queries are made (except for the first)
 
 ### Tableau Sample Dashboard
 
