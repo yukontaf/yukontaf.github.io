@@ -20,15 +20,17 @@ Within this work I've done some basic exploratory data analysis, the main purpos
 
 ### Customer Churn Prediction
 
-[Here](https://github.com/yukontaf/projects/blob/master/churn-analysis.ipynb) I've done some basic EDA, the main purpose is to create an efficient model to predict the churn of the client given some parameters. I've also planned to build a web app (via streamlit) to make it easy to make predictions, especially for the part of the audience that doesn't have a configured jupyter notebook at hand. Via this work, I demonstrate the ability not only to build but also a fine-tune an ML model with optuna package.
+[Here](churnAnalysis.html) I've done some basic EDA, the main purpose is to create an efficient model to predict the churn of the client given some parameters. I've also planned to build a web app (via streamlit) to make it easy to make predictions, especially for the part of the audience that doesn't have a configured jupyter notebook at hand. Via this work, I demonstrate the ability not only to build but also a fine-tune an ML model with optuna package.
 
 ### ETL pipeline
 
-[This](https://github.com/yukontaf/projects/blob/master/etl.ipynb) is not full-scale work. Via this script, I would like to demonstrate the fact that I have experience working with databases, to make this work I've created a locally running database, which can be accessed remotely (when I start a ngrok tunnel on my local machine). I've also wanted to show that I'm able to load any given table into a relational database.
+[This](etl.html) is not full-scale work. Via this script, I would like to demonstrate the fact that I have experience working with databases, to make this work I've created a locally running database, which can be accessed remotely (when I start a ngrok tunnel on my local machine). I've also wanted to show that I'm able to load any given table into a relational database.
 
-### Cohort Analysis and Dataviz
+### Cohort Analysis
 
-[Here](https://github.com/yukontaf/projects/blob/master/Case6.ipynb) I've attempted to visualize some basic info that was available. I've also wanted to show that I'm familiar with pandas groupby method, and using it to make plots.
+[Here](https://github.com/yukontaf/projects/blob/master/Case6.ipynb) I've attempted to calculate several metrics and make basic plots. I've also wanted to show that I'm familiar with pandas groupby method, and using it to make plots.
+
+In [this](cohortAnalysis.html) work I've broken the dataset down into cohorts, calculated RMF metrics and then basing on their value, implemented  'hand-crafted' clustering (where affiliation to each cluster was calculated based on heuristic rule) and then compared (RMF) this way of clustering with scikit-learn algo K-means. * This can be used as template for cohort analysis for an arbitrary dataset *  
 
 ### Credit Default Scoring (Hypothesis Testing)
 
