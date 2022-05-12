@@ -41,7 +41,7 @@ In [this](creditScore.html) script written in R, I've done some exploratory data
 
 ### No-show Appointment Data Exploration
 
-[Here](noShowAppointment.html) I've made a visualization for every feature that can presumably impact the target variable (show or no-show on the given day), next, I've calculated confidence intervals for difference in show/no-show ratios in order to numerically show which features have impact on target. 
+[Here](noShowAppointment.html) I've made a visualization for every feature that can presumably impact the target variable (show or no-show on the given day), next, I've calculated confidence intervals for difference in show/no-show ratios in order to numerically show which features have impact on target. Then, I've build and compaired a pair of classifiers (Bernoulli and MultinomialNB), the first one showed better results with ***accuracy of 80%*** on the test sample
 
 ### Credit Card Fraud Detection
 
