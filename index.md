@@ -28,9 +28,9 @@ Within this work I've done some basic exploratory data analysis, the main purpos
 
 ### Cohort Analysis
 
-[Here](https://github.com/yukontaf/projects/blob/master/Case6.ipynb) I've attempted to calculate several metrics and make basic plots. I've also wanted to show that I'm familiar with pandas groupby method, and using it to make plots.
+[Here](Case6.html) I've attempted to calculate several metrics and make basic plots. I've also wanted to show that I'm familiar with pandas groupby method, and using it to make plots.
 
-In [this](cohortAnalysis.html) work I've broken the dataset down into cohorts, calculated RMF metrics and then basing on their value, implemented  'hand-crafted' clustering (where affiliation to each cluster was calculated based on heuristic rule) and then compared (RMF) this way of clustering with scikit-learn algo K-means. * This can be used as template for cohort analysis for an arbitrary dataset *  
+In [this](cohortAnalysis.html) work I've broken the dataset down into cohorts, calculated RMF metrics and then basing on their value, implemented  'hand-crafted' clustering (where affiliation to each cluster was calculated based on heuristic rule) and then compared (RMF) this way of clustering with scikit-learn algo K-means. *This can be used as template for cohort analysis for an arbitrary dataset*  
 
 ### Credit Default Scoring (Hypothesis Testing)
 
