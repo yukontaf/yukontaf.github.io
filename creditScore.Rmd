@@ -1,0 +1,156 @@
+---
+title: "Hypothesis Testing for Credit Scoring Dataset"
+author: "Gleb Sokolov"
+date: '2022-05-06'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+library(PropCIs)
+library(zeallot)
+library(DBI)
+library(vcd)
+con <- DBI::dbConnect(odbc::odbc(), driver = "/usr/local/Cellar/psqlodbc/13.02.0000/lib/psqlodbcw.so", database = "yukontaf", UID = "glebsokolov", host = "localhost",
+  port = 5432)
+```
+
+```{r}
+credit_score <- dbSendQuery(con, "SELECT * FROM credit_score")
+credit_score <- dbFetch(credit_score)
+```
+
+
+```{r}
+for (col in 1:ncol(credit_score)) {
+  colnames(credit_score)[col] <- tolower(colnames(credit_score)[col])
+}
+```
+
+```{r}
+credit_score <- subset(credit_score, select = -c(index, id))
+categories <- c("sex", "education", "marriage", "default")
+for (col in categories) {
+  credit_score[, col] <- as.factor(credit_score[, col])
+}
+numerical <- names(subset(credit_score, select = -c(sex, education, marriage, default)))
+for (n in numerical) {
+  credit_score[, n] <- as.numeric(unlist(credit_score[, n]))
+}
+head(credit_score, 10)
+```
+
+First, I have to admit that this is a synthetical dataset, which means that there are no missing values, outliers, errors or any other mistakes, so these examinations will be skipped.
+
+```{r}
+credit_score$limit_bal <- log(credit_score$limit_bal)
+p1 <- ggplot(credit_score, aes(x = limit_bal)) + geom_histogram()
+ggplotly(p1)
+```
+
+```{r}
+credit_score$age <- log(credit_score$age)
+p2 <- ggplot(credit_score, aes(x = age)) + geom_histogram()
+ggplotly(p2)
+```
+
+
+```{r}
+p3 <- ggplot(credit_score, aes(x=sex, y=limit_bal)) + geom_boxplot()
+ggplotly(p3)
+```
+```{r}
+p4 <- ggplot(credit_score, aes(x=education, y=limit_bal)) + geom_boxplot()
+ggplotly(p4)
+```
+
+```{r}
+p5 <- ggplot(credit_score, aes(x=marriage, y=limit_bal)) + geom_boxplot()
+ggplotly(p5)
+```
+```{r}
+t <- (table(credit_score$default,credit_score$sex))
+t <- as.data.frame(t)
+colnames(t) <- c('default', 'sex', 'cnt')
+p6 <-
+  ggplot(t, aes(x = default, y = cnt, fill = sex)) + geom_bar(stat = 'identity',  position = position_dodge())
+ggplotly(p6)
+```
+
+
+
+```{r}
+t <- (table(credit_score$default, credit_score$education))
+t <- as.data.frame(t)
+colnames(t) <- c('default', 'education', 'cnt')
+
+p6 <-
+  ggplot(t, aes(x = default, y = cnt, fill=education)) + geom_bar(stat = 'identity',  position = position_dodge())
+ggplotly(p6)
+
+```
+
+```{r}
+t <- (table(credit_score$default, credit_score$marriage))
+t <- as.data.frame(t)
+colnames(t) <- c('default', 'marriage', 'cnt')
+
+p7 <-
+  ggplot(t, aes(x = default, y = cnt, fill=marriage)) + geom_bar(stat = 'identity',  position = position_dodge())
+ggplotly(p7)
+```
+Let's test two hypothesis: 
+- Are the mean credit limits (limit_bal) value for two groups default = 0 (didn't returned the credit) and default = 1 equal to each other?
+- Are the distributions of the limit_bal for these two groups also equal to each other?
+
+In order to answer these and the following questions I will calculate **confidence intervals**.
+
+```{r}
+t.test(limit_bal ~ default, data = credit_score)
+wilcox.test(limit_bal ~ default, data = credit_score)
+```
+
+**These results are obviously practically significant.**
+
+Now, lets test another pair of hypothesis:
+- Are the mean ages and their distributions for these two groups equal to each other?
+
+```{r}
+t.test(age ~ default, credit_score)
+wilcox.test(age ~ default, credit_score)
+```
+
+The result we received tells us that statistically, mean ages *are* different, but from the confidence interval value we can see that **this difference is hardly practically signigicant.**
+
+Now let's see if the gender composition for the two groups differ.
+
+```{r}
+good <- filter(credit_score, default == 0)
+bad <- filter(credit_score, default == 1)
+c(ngoodmen, total_good, nbadmen, total_bad) %<-% c(table(good$sex)[1], sum(table(good$sex)), table(bad$sex)[1], sum(table(bad$sex)))
+diffscoreci(ngoodmen, total_good, nbadmen, total_bad, conf.level = 0.95)
+```
+
+That means that men do not return their credits **slightly more often** (3-6%) than women.
+
+Now, let's see if the education level impacts default rate. First, calculate table which will show us the sizes of default and no-default groups for each education level, secondly, let's see how do these sizes differ from the expected ones, next calculate the value of the statistical criteria.
+
+```{r}
+crosstab <- table(credit_score$education, credit_score$default)
+crosstab
+crosstab - chisq.test(crosstab)$expected
+chisq.test(crosstab)
+assocstats(crosstab)
+```
+
+Finally, let's see if the marriage category impacts the default category.
+
+```{r}
+marriage_crosstab <- table(credit_score$marriage, credit_score$default)
+marriage_crosstab
+assocstats(marriage_crosstab)
+```
+
+For both variables (education and marriage) we see that **they statitically significant impact the default category**. However, the contigency coefficients (which tells us how strong the features are correlated) are relatively small.
