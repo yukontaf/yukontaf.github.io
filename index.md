@@ -1,6 +1,4 @@
-<link rel="icon" href="icon.png">
-
-On this page, I would like to share some works made by me. You can find my resume [here](https://spb.hh.ru/resume/03d9e35dff096d7a650039ed1f4e4e39726f7a?hhtmFrom=account_login)
+On this page, I would like to share some works made by me. You can find my resume [here (RU)](https://spb.hh.ru/resume/03d9e35dff096d7a650039ed1f4e4e39726f7a?hhtmFrom=account_login) and [here (EN)](CV.html)
 
 List of projects:
 

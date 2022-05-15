@@ -13,23 +13,42 @@ library(PropCIs)
 library(zeallot)
 library(DBI)
 library(vcd)
+library(perm)
+library(EnvStats)
+library(lmPerm)
+library(multcomp)
+library(plyr)
 con <- DBI::dbConnect(odbc::odbc(), driver = "/usr/local/Cellar/psqlodbc/13.02.0000/lib/psqlodbcw.so", database = "yukontaf", UID = "glebsokolov", host = "localhost",
   port = 5432)
 ```
 
-```{r}
-credit_score <- dbSendQuery(con, "SELECT * FROM credit_score")
-credit_score <- dbFetch(credit_score)
+```{r permutation test}
+permutation.test <- function(treatment, outcome, n){
+  original <- diff(tapply(outcome, treatment, mean))
+  original <- original[complete.cases(original)]
+  distribution=c()
+  result=0
+  for(i in 1:n){
+    dist <- diff(by(outcome, treatment[sample(length(treatment), replace=FALSE)], mean))
+    distribution[i] <- dist[complete.cases(dist)]
+  }
+  # result=sum(abs(distribution) >= abs(original))/(n)
+  return(distribution)
+}
 ```
 
+```{r load data}
+credit_score <- dbSendQuery(con, "SELECT * FROM credit_score")
+credit_score <<- as.data.frame(dbFetch(credit_score))
+```
 
-```{r}
+```{r transform colnames}
 for (col in 1:ncol(credit_score)) {
   colnames(credit_score)[col] <- tolower(colnames(credit_score)[col])
 }
 ```
 
-```{r}
+```{r make categorical cols}
 credit_score <- subset(credit_score, select = -c(index, id))
 categories <- c("sex", "education", "marriage", "default")
 for (col in categories) {
@@ -39,38 +58,56 @@ numerical <- names(subset(credit_score, select = -c(sex, education, marriage, de
 for (n in numerical) {
   credit_score[, n] <- as.numeric(unlist(credit_score[, n]))
 }
-head(credit_score, 10)
+```
+
+```{r}
+credit_score$education = factor(credit_score$education, levels=c(6, 5, 4, 3, 2, 1, 0), ordered=TRUE)
+```
+
+```{r}
+credit_score <- na.omit(credit_score)
 ```
 
 First, I have to admit that this is a synthetical dataset, which means that there are no missing values, outliers, errors or any other mistakes, so these examinations will be skipped.
 
-```{r}
-credit_score$limit_bal <- log(credit_score$limit_bal)
+```{r limit_bal hist, include=FALSE}
+credit_score$limit_bal_log <- log(credit_score$limit_bal)
 p1 <- ggplot(credit_score, aes(x = limit_bal)) + geom_histogram()
-ggplotly(p1)
+hist1 <-
+  permutation.test(credit_score$limit_bal,
+                   as.numeric(credit_score$default),
+                   1000)
+hist <- ggplot(as.data.frame(hist1), aes(x = hist1)) + geom_histogram()
 ```
 
 ```{r}
+ggplotly(p1)
+```
+
+Note: distribution of limit_bal is probably not normal. We will use this fact later.
+
+```{r age hist}
 credit_score$age <- log(credit_score$age)
 p2 <- ggplot(credit_score, aes(x = age)) + geom_histogram()
 ggplotly(p2)
 ```
 
-
-```{r}
+```{r limit_bal~sex}
 p3 <- ggplot(credit_score, aes(x=sex, y=limit_bal)) + geom_boxplot()
 ggplotly(p3)
 ```
-```{r}
-p4 <- ggplot(credit_score, aes(x=education, y=limit_bal)) + geom_boxplot()
+
+```{r limit_bal~education}
+p4 <- ggplot(credit_score, aes(x=education, y=limit_bal, fill=education)) + geom_boxplot()
 ggplotly(p4)
 ```
 
-```{r}
-p5 <- ggplot(credit_score, aes(x=marriage, y=limit_bal)) + geom_boxplot()
+```{r limit_bal~marriage}
+p5 <- ggplot(credit_score, aes(x=marriage, y=limit_bal, fill=marriage)) + geom_boxplot()
 ggplotly(p5)
 ```
-```{r}
+
+```{r default~sex rates}
 t <- (table(credit_score$default,credit_score$sex))
 t <- as.data.frame(t)
 colnames(t) <- c('default', 'sex', 'cnt')
@@ -79,9 +116,7 @@ p6 <-
 ggplotly(p6)
 ```
 
-
-
-```{r}
+```{r default~education rates}
 t <- (table(credit_score$default, credit_score$education))
 t <- as.data.frame(t)
 colnames(t) <- c('default', 'education', 'cnt')
@@ -92,7 +127,7 @@ ggplotly(p6)
 
 ```
 
-```{r}
+```{r default~marriage rate}
 t <- (table(credit_score$default, credit_score$marriage))
 t <- as.data.frame(t)
 colnames(t) <- c('default', 'marriage', 'cnt')
@@ -101,25 +136,40 @@ p7 <-
   ggplot(t, aes(x = default, y = cnt, fill=marriage)) + geom_bar(stat = 'identity',  position = position_dodge())
 ggplotly(p7)
 ```
-Let's test two hypothesis: 
-- Are the mean credit limits (limit_bal) value for two groups default = 0 (didn't returned the credit) and default = 1 equal to each other?
-- Are the distributions of the limit_bal for these two groups also equal to each other?
 
-In order to answer these and the following questions I will calculate **confidence intervals**.
+Let's test two hypothesis: - Are the mean credit limits (limit_bal) value for two groups default = 0 (didn't returned the credit) and default = 1 equal to each other? - Are the distributions of the limit_bal for these two groups also equal to each other?
+
+In order to answer these and the following questions I will calculate **confidence intervals**. Here and further I will use permutation non-parametric test in order to compare distributions
 
 ```{r}
 t.test(limit_bal ~ default, data = credit_score)
 wilcox.test(limit_bal ~ default, data = credit_score)
 ```
 
+```{r}
+hist1 = permutation.test(credit_score$default, credit_score$limit_bal, 1000)
+p8 <- ggplot(as.data.frame(hist1), aes(x=hist1)) + geom_histogram()
+ggplotly(p8)
+```
+
 **These results are obviously practically significant.**
 
-Now, lets test another pair of hypothesis:
-- Are the mean ages and their distributions for these two groups equal to each other?
+Now, lets test another pair of hypothesis: - Are the mean ages and their distributions for these two groups equal to each other?
 
 ```{r}
 t.test(age ~ default, credit_score)
 wilcox.test(age ~ default, credit_score)
+```
+
+```{r age permutation test}
+hist2 <- permutation.test(credit_score$default, credit_score$age, 1000)
+p9 <- ggplot(as.data.frame(hist2), aes(x=hist2)) + geom_histogram()
+ggplotly(p9)
+#aovp(limit_bal~education, data=credit_score)
+```
+
+```{r}
+subset <- credit_score %>% filter(education==2|education==1)
 ```
 
 The result we received tells us that statistically, mean ages *are* different, but from the confidence interval value we can see that **this difference is hardly practically signigicant.**
@@ -133,17 +183,104 @@ c(ngoodmen, total_good, nbadmen, total_bad) %<-% c(table(good$sex)[1], sum(table
 diffscoreci(ngoodmen, total_good, nbadmen, total_bad, conf.level = 0.95)
 ```
 
+```{r}
+library("ggpubr")
+ggboxplot(credit_score, x = "education", y = "limit_bal", 
+          color = "education", 
+          order = c(6, 5, 4, 3, 2, 1),
+          ylab = "Limit Balance", xlab = "Education Level")
+
+p8 <- ggplot(credit_score, aes(x=education, y=limit_bal)) + geom_boxplot()
+ggplotly(p8)
+```
+
+Let's try and test ANOVA model for comparing means of limit_bal dependent on education. ANOVA assumes homoscedasticity as well as normality of distribution. Let's build a model and view a QQ-plot, it will help us understand if the target is normally distributed.
+
+```{r anova}
+res.aov = aov(limit_bal ~ education, data=credit_score[sample(5000), ])
+summary(res.aov)
+TukeyHSD(res.aov)
+```
+
+```{r qq-plot not transformed}
+plot(res.aov, 1)
+plot(res.aov, 2)
+```
+
+As we can see, distribution is far from normal. Let's validate this hypothesis using Shapiro-Wilk test.
+
+```{r shapiro-wilk}
+aov_residuals <- res.aov[['residuals']]
+shapiro.test(x=aov_residuals)
+```
+
+As expected, H_0 have to be rejected: distribution of limit_bal is not normal. That means, that we can not rely on the ANOVA model conclusions and we need to use other non-parametric criteria, for example, permutation test. Education feature is categorical (not binary) variable, which means that we have to incorporate multiple testing correction (Max-T method) in order to receive H_0 distribution for differences of means.
+
+But first, let's try to calculate log and square root of the limit_bal, hoping that it will help to restore normality. Calculations are hidden, distribution didn't become normal anyway.
+
+```{r}
+credit_score$limit_bal_log = log(credit_score$limit_bal)
+aov.log = aov(default~limit_bal_log, credit_score)
+qqPlot(x=credit_score$limit_bal_log)
+```
+
+```{r}
+credit_score$limit_bal_sqrt = sqrt(credit_score$limit_bal)
+qqPlot(x=credit_score$limit_bal_sqrt)
+```
+
+```{r}
+edu <- expand.grid(1:6, 1:6)
+```
+
+```{r}
+selection <-
+     subset(credit_score, education=="1"|education=="2", c(education, limit_bal))
+outcome <- selection$limit_bal
+treatment <- droplevels(selection$education)
+```
+
+```{r limit_bal~education permutation test}
+#d <<- data.frame(tmp1)
+#d <- rbind(d, tmp)
+#colnames(d) <- nms
+dl <- list()
+foo <- function(edu) {
+    p <-  c(edu['Var1'], edu['Var2'], edu['Var3'])
+    selection <-
+     subset(credit_score, education==p[1]|education==p[2], c(education, limit_bal))
+      outcome <- selection$limit_bal
+      treatment <- droplevels(selection$education)
+      v <- permutation.test(treatment=subset$education, outcome=subset$limit_bal, n=1000)
+      dl[p[3]] <- list(v)
+    #cbind(d, )
+}
+```
+
+```{r perm test continued}
+d <- apply(edu, MARGIN=1, foo)
+d <- t(matrix(unlist(d), ncol=nrow(edu), nrow=1000))
+distrib <- apply(d, MARGIN=2, function(x) max(abs(x)))
+p8 <- ggplot(as.data.frame(distrib), aes(x=distrib)) + geom_histogram()
+ggplotly(p8)
+```
+
 That means that men do not return their credits **slightly more often** (3-6%) than women.
 
 Now, let's see if the education level impacts default rate. First, calculate table which will show us the sizes of default and no-default groups for each education level, secondly, let's see how do these sizes differ from the expected ones, next calculate the value of the statistical criteria.
 
-```{r}
+```{r chi2 goodness of fit test for default~education ratio}
 crosstab <- table(credit_score$education, credit_score$default)
 crosstab
+```
+
+```{r contigency table}
 crosstab - chisq.test(crosstab)$expected
 chisq.test(crosstab)
 assocstats(crosstab)
 ```
+
+From this we can conclude that education statistically and practically significant impacts both default and limit_bal, however, these dependencies are not linear (and not uniform as for default)
 
 Finally, let's see if the marriage category impacts the default category.
 
