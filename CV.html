@@ -1242,53 +1242,56 @@ pre[class*="language-"] {
   <style>.markdown-body{}pre.front-matter{display:none!important;}</style>
 </head>
 <body>
-  <article class="markdown-body"><p>On this page, I would like to share some works made by me. You can find my resume <a href="https://spb.hh.ru/resume/03d9e35dff096d7a650039ed1f4e4e39726f7a?hhtmFrom=account_login">here (RU)</a> and <a href="CV.html">here (EN)</a></p>
-<p>List of projects:</p>
+  <article class="markdown-body"><h3 class="atx" id="contact-info">Contact info</h3>
+<p>Gleb Sokolov</p>
+<p>whatsapp/viber/calls: +7(920)943-7472</p>
+<p>telegram: @gleb_is_here</p>
+<p>email: <a href="mailto:g.sokolov@pm.me">g.sokolov@pm.me</a></p>
+<p>Saint Petersburg, RU</p>
+<h4 class="atx" id="education">Education</h4>
 <ul>
-<li>NYSE data dashboard</li>
-<li>Customer Churn Prediction</li>
-<li>ETL pipeline</li>
-<li>Cohort Analysis template</li>
-<li>Credit Default Scoring (Hypothesis Testing)</li>
-<li>No-show Appointment Data Exploration</li>
-<li>Credit Card Fraud Detection</li>
-<li>Spread Widening prediction</li>
-<li>SQL scripts collection</li>
-<li>Tableau Sample Dashboard</li>
+<li><p>Saint Petersburg State Polytechnic University, applied mathematics and informatics, bachelor (2018-2021)</p>
+</li>
+<li><p>"Deep Learning" course by Tinkoff Education (2021-2022)</p>
+</li>
+<li><p>Specialization on Machine Learning and Data Analysis by MIPT &amp; Yandex (2021-2022)</p>
+</li>
 </ul>
-<h3 class="atx" id="nyse-data-dashboard">NYSE data Dashboard</h3>
-<p>Within this work I've done some basic exploratory data analysis, the main purpose of it was to make me familiar with the Dash library. The dashboard itself can be found <a href="https://nyse-data.herokuapp.com/">here</a> it is fully interactive, you can hover over each graph in order to see the details, you can also zoom into details (view more navigation buttons in the upper right angle)</p>
+<h4 class="atx" id="hard-skills">Hard Skills</h4>
 <ul>
-<li>The next step in creating dashboards – wrap all the visuals into bootstrap components. My very first try in this field was an app where you can enter a ticker name and watch it's candlestick chart live, needless to say it looks far more pretty than the previous dashboard, you can view preliminary version <a href="https://yukontaf-stock-plot.herokuapp.com/">here</a>.</li>
+<li><p>Advanced Python (numpy, scikit-learn, pandas, tensorflow, dash, statsmodels): data collection, transformation and aggregation, calculation customet metrics, calculation of unit economy metrics, KPI. Testing statistical hypothesis, design, set up and analysis of AB tests and other statistical experiments, calculation of effect size, power and p-values. Using data to make statistical inference, building predictive models using scikit-learn and/or xgboost, time series analysis and prediction using tensorflow.</p>
+</li>
+<li><p>Intermediate SQL for ETL purposes: aggregations, window functions, subqueries, CTE.</p>
+</li>
+<li><p>Basic knowledge of R, usage of main statistical packages for </p>
+</li>
+<li><p>Excel (pivot tables and basic VBA) &amp; dash  / Tableau for creating visualizations, charts and plots. Creating analytical stories and dashboards either with python or with Tableau.  </p>
+</li>
+<li><p>Business analytics, cohort analysis. User segmentation (also with machine learning methods)</p>
+</li>
+<li><p>Git for version control</p>
+</li>
+<li><p>Some of my works can be found <a href="https://yukontaf.github.io">here</a>. </p>
+</li>
 </ul>
-<h3 class="atx" id="customer-churn-prediction">Customer Churn Prediction</h3>
-<p><a href="churnAnalysis.html">Here</a> I've done some basic EDA, the main purpose is to create an efficient model to predict the churn of the client given some parameters. I've also planned to build a web app (via streamlit) to make it easy to make predictions, especially for the part of the audience that doesn't have a configured jupyter notebook at hand. Via this work, I demonstrate the ability not only to build but also a fine-tune an ML model with optuna package.</p>
-<h3 class="atx" id="etl-pipeline">ETL pipeline</h3>
-<p><a href="etl.html">This</a> is not full-scale work. Via this script, I would like to demonstrate the fact that I have experience working with databases, to make this work I've created a locally running database, which can be accessed remotely (when I start a ngrok tunnel on my local machine). I've also wanted to show that I'm able to load any given table into a relational database.</p>
-<h3 class="atx" id="cohort-analysis">Cohort Analysis</h3>
-<p><a href="Case6.html">Here</a> I've attempted to calculate several metrics and make basic plots. I've also wanted to show that I'm familiar with pandas groupby method, and using it to make plots.</p>
-<p>In <a href="cohortAnalysis.html">this</a> work I've broken the dataset down into cohorts, calculated RMF metrics and then basing on their value, implemented  'hand-crafted' clustering (where affiliation to each cluster was calculated based on heuristic rule) and then compared (RMF) this way of clustering with scikit-learn algo K-means. <em>This can be used as template for cohort analysis for an arbitrary dataset</em>  </p>
-<h3 class="atx" id="credit-default-scoring-hypothesis-testing">Credit Default Scoring (Hypothesis Testing)</h3>
-<p>In <a href="creditScore.html">this</a> script written in R, I've done some exploratory data analysis and tested hypotheses concerning default, i.e. how does presence in certain social category (sex, marriage, education level) impact the returning of credit, and also answered the question if the mean credit limit differs for default and non-default groups.</p>
-<h3 class="atx" id="no-show-appointment-data-exploration">No-show Appointment Data Exploration</h3>
-<p><a href="noShowAppointment.html">Here</a> I've made a visualization for every feature that can presumably impact the target variable (show or no-show on the given day), next, I've calculated confidence intervals for difference in show/no-show ratios in order to numerically show which features have impact on target. Then, I've build and compaired a pair of classifiers (Bernoulli and MultinomialNB), the first one showed better results with <strong><em>accuracy of 80%</em></strong> on the test sample</p>
-<h3 class="atx" id="credit-card-fraud-detection">Credit Card Fraud Detection</h3>
-<p>In <a href="ccFraudDetection.html">this</a> script I tried to implement a well-known anomaly detection algorithm that uses inverse PCA transformation </p>
-<h3 class="atx" id="spread-widening-prediction">Spread Widening Prediction</h3>
-<p>In the <a href="orderBook.html">first</a> script, I implemented a simple animated order book (much of the code is redundant, watch the result at the end of the file, note: in order to view an animated version you will need to download and launch the source code on your local machine). In a <a href="spreadWideningPred.html">second</a> – tried to build a model which would predict if the spread becomes wider or not. To do so, I needed to deal with an extremely imbalanced dataset.</p>
-<h3 class="atx" id="sql-scripts">SQL scripts</h3>
-<p>Here are some SQL scripts, written by me.</p>
+<h4 class="atx" id="work-experience">Work Experience</h4>
 <ul>
-<li><a href="basicSQL.html">Basic SQL</a></li>
-<li><a href="https://github.com/yukontaf/projects/blob/master/script1.sql">Script 1</a></li>
-<li><a href="https://github.com/yukontaf/projects/blob/master/script2.sql">Script 2</a></li>
-<li><a href="https://github.com/yukontaf/projects/blob/master/script3.sql">Script 3</a></li>
-<li><a href="https://github.com/yukontaf/projects/blob/master/script4.sql">Script 4</a></li>
-<li><a href="https://github.com/yukontaf/projects/blob/master/script5.sql">Script 5</a></li>
-<li>And <a href="tables.html">here</a> is a notebook where you can see the tables to which these queries are made (except for the first)</li>
+<li><p>Skypro (Skyeng) data analyst internship: august 2021-- january 2022</p>
+</li>
+<li><p>GoStudent (python and math tutor): may 2021 – present</p>
+</li>
 </ul>
-<h3 class="atx" id="tableau-sample-dashboard">Tableau Sample Dashboard</h3>
-<p>Under developement!</p>
+<h4 class="atx" id="soft-skills">Soft Skills</h4>
+<ul>
+<li><p>Github, work with task trackers and task planners (Trello, Slack)</p>
+</li>
+<li><p>Wide range of interests and techincal erudition, constant will to deepen and broaden horizons</p>
+</li>
+<li><p>Strong interpersonal skills, well-doing in team works and projects</p>
+</li>
+<li><p>Perform well in terms of multitasking.</p>
+</li>
+</ul>
 </article>
 </body>
 </html>
