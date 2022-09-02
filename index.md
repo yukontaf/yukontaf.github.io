@@ -52,7 +52,7 @@ In the [first](orderBook.html) script, I implemented a simple animated order boo
 
 ### Time Series Prediction
 
-In [this]([Google Colab](https://colab.research.google.com/drive/1WrEgv0BM4qvAEHW4d3X_41Hy2FvQshC3#scrollTo=sCRtsvD3y2jH)) notebook I implemented two fundamentally different algorithms for forecasting: the fist was simple moving average, which, in my opinion, performs poorly, and the second was deep neural network. As we can see there, DNN can gives us pretty accurate (compared with moving average) results even if our dataset is very small (in my case it were only 25 points there). This work clearly demonstrates that I'm capable of performing intricate procedures for preparing dataset for forecasting with neural network and obtain reasonable results.
+In [this]([Google Colab](https://colab.research.google.com/drive/1WrEgv0BM4qvAEHW4d3X_41Hy2FvQshC3#scrollTo=sCRtsvD3y2jH)) notebook I implemented two fundamentally different algorithms for forecasting: the fist was simple moving average, which, in my opinion, performs poorly, and the second was deep neural network. As we can see there, DNN can gives us pretty accurate (compared with moving average) results even if our dataset is relatively small (in my case it were only 4923 points there). This work clearly demonstrates that I'm capable of performing intricate procedures for preparing dataset for forecasting with neural network and obtain reasonable results.
 
 ### SQL scripts
 
