@@ -10,6 +10,7 @@ List of projects:
 - No-show Appointment Data Exploration
 - Credit Card Fraud Detection
 - Spread Widening prediction
+- Time Series Prediction
 - SQL scripts collection
 - Tableau Sample Dashboard
 
@@ -48,6 +49,10 @@ In [this](ccFraudDetection.html) script I tried to implement a well-known anomal
 ### Spread Widening Prediction
 
 In the [first](orderBook.html) script, I implemented a simple animated order book (much of the code is redundant, watch the result at the end of the file, note: in order to view an animated version you will need to download and launch the source code on your local machine). In a [second](spreadWideningPred.html) – tried to build a model which would predict if the spread becomes wider or not. To do so, I needed to deal with an extremely imbalanced dataset.
+
+### Time Series Prediction
+
+In [this]([Google Colab](https://colab.research.google.com/drive/1WrEgv0BM4qvAEHW4d3X_41Hy2FvQshC3#scrollTo=sCRtsvD3y2jH)) notebook I implemented two fundamentally different algorithms for forecasting: the fist was simple moving average, which, in my opinion, performs poorly, and the second was deep neural network. As we can see there, DNN can give us pretty accurate (compared with moving average) results even if our dataset is very small (in my case it were 25 points there). This work clearly demonstrates that I'm capable of performing intricate procedures for preparing dataset for forecasting with neural network and obtain reasonable results.
 
 ### SQL scripts
 

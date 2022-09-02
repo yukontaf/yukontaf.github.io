@@ -1253,11 +1253,12 @@ pre[class*="language-"] {
 <li>No-show Appointment Data Exploration</li>
 <li>Credit Card Fraud Detection</li>
 <li>Spread Widening prediction</li>
+<li>Time Series Prediction</li>
 <li>SQL scripts collection</li>
 <li>Tableau Sample Dashboard</li>
 </ul>
 <h3 class="atx" id="nyse-data-dashboard">NYSE data Dashboard</h3>
-<p>Within this work I've done some basic exploratory data analysis, the main purpose of it was to make me familiar with the Dash library. The dashboard itself can be found <a href="https://nyse-yukontaf.herokuapp.com/">here</a> it is fully interactive, you can hover over each graph in order to see the details, you can also zoom into details (view more navigation buttons in the upper right angle)</p>
+<p>Within this work I've done some basic exploratory data analysis, the main purpose of it was to make me familiar with the Dash library. The dashboard itself can be found <a href="https://nyse-data.herokuapp.com/">here</a> it is fully interactive, you can hover over each graph in order to see the details, you can also zoom into details (view more navigation buttons in the upper right angle)</p>
 <ul>
 <li>The next step in creating dashboards – wrap all the visuals into bootstrap components. My very first try in this field was an app where you can enter a ticker name and watch it's candlestick chart live, needless to say it looks far more pretty than the previous dashboard, you can view preliminary version <a href="https://yukontaf-stock-plot.herokuapp.com/">here</a>.</li>
 </ul>
@@ -1276,6 +1277,8 @@ pre[class*="language-"] {
 <p>In <a href="ccFraudDetection.html">this</a> script I tried to implement a well-known anomaly detection algorithm that uses inverse PCA transformation </p>
 <h3 class="atx" id="spread-widening-prediction">Spread Widening Prediction</h3>
 <p>In the <a href="orderBook.html">first</a> script, I implemented a simple animated order book (much of the code is redundant, watch the result at the end of the file, note: in order to view an animated version you will need to download and launch the source code on your local machine). In a <a href="spreadWideningPred.html">second</a> – tried to build a model which would predict if the spread becomes wider or not. To do so, I needed to deal with an extremely imbalanced dataset.</p>
+<h3 class="atx" id="time-series-prediction">Time Series Prediction</h3>
+<p>In [this](<a href="https://colab.research.google.com/drive/1WrEgv0BM4qvAEHW4d3X_41Hy2FvQshC3#scrollTo=sCRtsvD3y2jH">Google Colab</a>) notebook I implemented two fundamentally different algorithms for forecasting: the fist was simple moving average, which, in my opinion, performs poorly, and the second was deep neural network. As we can see there, DNN can give us pretty accurate (compared with moving average) results even if our dataset is very small (in my case it were 25 points there). This work clearly demonstrates that I'm capable of performing intricate procedures for preparing dataset for forecasting with neural network and obtain reasonable results.</p>
 <h3 class="atx" id="sql-scripts">SQL scripts</h3>
 <p>Here are some SQL scripts, written by me.</p>
 <ul>
