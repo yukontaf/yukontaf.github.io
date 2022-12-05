@@ -20,18 +20,26 @@ Saint Petersburg, RU
 
 #### Hard Skills
 
-- Advanced Python (numpy, scikit-learn, pandas, tensorflow, dash, statsmodels): data collection, transformation and aggregation, calculation customet metrics, calculation of unit economy metrics, KPI. Testing statistical hypothesis, design, set up and analysis of AB tests and other statistical experiments, calculation of effect size, power and p-values. Using data to make statistical inference, building predictive models using scikit-learn and/or xgboost, time series analysis and prediction using tensorflow.
+* I’m familiar with full-stack data analysis workflow: 
 
+1. Business problem framing
+2. Analytics problem framing
+3. Identifying and prioritizing data needs and resources, means of data collection and acquisition
+4. Methodology (approach/model) selection
+5. Model Building
+6. Solution Deployment
+7. All the steps of model life-cycle (documenting initial structure, tracking model quality, recalibrating and maintaining model, evaluating business benefit of model over time)
+
+- Advanced Python (numpy, scikit-learn, pandas, tensorflow, dash, statsmodels): data collection, transformation and aggregation, calculation customet metrics, calculation of unit economy metrics, KPI. Testing statistical hypothesis, design, set up and analysis of AB tests and other statistical experiments, calculation of effect size, power and p-values. Using data to make statistical inference, building predictive models using scikit-learn and/or xgboost, time series analysis and prediction using tensorflow.
+- Testing statistical hypothesis, design, set up and analysis of AB tests and other statistical experiments, calculation of effect size, power and p-values.
+- Using data to make statistical inference, building predictive models using scikit-learn and/or xgboost, or tensorflow, time series/images analysis and prediction/classification also using tensorﬂow.
 - Intermediate SQL for ETL purposes: aggregations, window functions, subqueries, CTE.
 
 - Basic knowledge of R, usage of main statistical packages for 
-
 - Excel (pivot tables and basic VBA) & dash  / Tableau for creating visualizations, charts and plots. Creating analytical stories and dashboards either with python or with Tableau.  
-
 - Business analytics, cohort analysis. User segmentation (also with machine learning methods)
-
 - Git for version control
-
+- Google-certified Tensorflow developer
 - Some of my works can be found [here](https://yukontaf.github.io). 
 
 #### Work Experience
