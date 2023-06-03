@@ -2,7 +2,11 @@ On this page, I would like to share some works made by me. You can find my resum
 
 List of projects:
 
-- NYSE data dashboard
+- Airbnb Analytical Dashboard
+- Video Game Sales Analysis
+- Mobile Game Data Analysis
+- Landing Page Design Experiment
+- Online Advertising Campaign Analysis
 - Customer Churn Prediction
 - ETL pipeline
 - Cohort Analysis template
@@ -12,13 +16,36 @@ List of projects:
 - Spread Widening prediction
 - Time Series Prediction
 - SQL scripts collection
-- Tableau Sample Dashboard
 
-### NYSE data Dashboard
+### Airbnb Analytical Dashboard
 
-Within this work I've done some basic exploratory data analysis, the main purpose of it was to make me familiar with the Dash library. The dashboard itself can be found [here](https://nyse-data.herokuapp.com/) it is fully interactive, you can hover over each graph in order to see the details, you can also zoom into details (view more navigation buttons in the upper right angle)
+[This](https://public.tableau.com/app/profile/gleb.sokolov/viz/AirbnbAnalyticalDashboard/Dashboard1?publish=yes) Tableau Public dashboard consists of: calculated renting property occupation rate; analytical chart to choose the best property by occupation rate, review score and price per night; a ranked table of top listings by calculated potential annual revenue; average price, average occupation rate and a number of unique listings KPIs; filters by neighborhood, occupation rate and a number of reviews per the last twelve month.
 
-- The next step in creating dashboards – wrap all the visuals into bootstrap components. My very first try in this field was an app where you can enter a ticker name and watch it's candlestick chart live, needless to say it looks far more pretty than the previous dashboard, you can view preliminary version [here](https://yukontaf-stock-plot.herokuapp.com/).
+### Video Game Sales Analysis
+
+Notebook can be found [here](https://drive.google.com/open?id=1IRu9RcQBzFfvXeh1HcKoBl7DFMa_yfD0&usp=drive_fs)
+
+**Skills**: data loading, data cleaning and preprocessing, filling missing values, EDA (exploratory data analysis), analyzing region based user profiles, measuring statistical factors, hypothesis testing.
+
+### Mobile Game Data Analysis
+
+Notebook can be found [here](https://drive.google.com/open?id=1IJ_lHboxyVNYnC0rRtFl8yVS35K6ycqo&usp=drive_fs)
+
+While completing this project I have been pursuing the following objectives: to find and visualize retention, to make a decision based on the A/B test data, to suggest a number of metrics to evaluate the results of the last monthly campaign.
+
+**Skills**: data cleaning, detecting data anomalies, python coding, data visualization, descriptive statistics, dealing with outliers, A/B tests, Shapiro–Wilk test, Levene's test, data transforms, Mann–Whitney U test, proportions z-test, bootstrapping, defining metrics.
+
+### Landing Page Design Experiment
+
+Notebook can be found [here](https://drive.google.com/open?id=1IPPCWhqhWUO198mick07WXR-LOvsjVoB&usp=drive_fs)
+
+**Skills:** evaluating A/B-test design, data cleaning, data anomalies detection, checking splitting system, calculating conversion rate, calculating bounce rate, log-scale transformations, Shapiro–Wilk test of distribution normality, A/B-tests (proportions z-test, Mann–Whitney rank test), plotting results, making conclusion and giving recommendations for follow-up actions.
+
+### Online Advertising Campaign Analysis
+
+Notebook can be found [here](https://drive.google.com/open?id=1IJ-mXd1cyl2QQOMqbimY02ccbiFikIWe&usp=drive_fs)
+
+**Skills:** data cleaning, CTR, CPC, CPA and CR calculation, comparing metrics with competitors, visualizing results, drawing conclusions.
 
 ### Customer Churn Prediction
 
@@ -65,7 +92,3 @@ Here are some SQL scripts, written by me.
 - [Script 4](https://github.com/yukontaf/projects/blob/master/script4.sql)
 - [Script 5](https://github.com/yukontaf/projects/blob/master/script5.sql)
 - And [here](tables.html) is a notebook where you can see the tables to which these queries are made (except for the first)
-
-### Tableau Sample Dashboard
-
-Under developement!
